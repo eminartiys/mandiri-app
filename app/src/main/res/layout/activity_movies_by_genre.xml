@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".feature.main.MainActivity">
+    tools:context=".feature.moviebygenre.MoviesByGenreActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/ToolbarTextAppearance"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="?attr/colorOnPrimary"
+        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/ui_view_genre_label_textview"
+            android:id="@+id/ui_view_genre_title_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="@string/genres_and_mood"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/text_color_primary"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="Action"/>
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -71,9 +73,6 @@
         android:id="@+id/ui_view_genre_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
         android:clipToPadding="false"
         android:paddingBottom="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,6 +80,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:itemCount="5"
-        tools:listitem="@layout/view_item_genre" />
+        tools:listitem="@layout/view_item_movie" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

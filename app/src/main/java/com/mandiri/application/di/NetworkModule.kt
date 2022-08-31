@@ -2,13 +2,14 @@ package com.mandiri.application.di
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.mandiri.application.data.repository.movie.MovieRepository
 import com.mandiri.application.data.service.GenreService
+import com.mandiri.application.data.service.MovieService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,6 +24,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     const val BASE_URL = "https://api.themoviedb.org/3/"
+    const val BASE_URL_PIC = "https://image.tmdb.org/t/p/original"
 
     @Singleton
     @Provides
@@ -30,25 +32,10 @@ object NetworkModule {
         return ChuckerInterceptor.Builder(context).build()
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideAuthInterceptor(): Interceptor {
-//        return Interceptor {
-//            val requestBuilder = it.request().newBuilder()
-//            requestBuilder.addHeader(
-//                "Authorization",
-//                "BEARER eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OTBjMDMzZGNhMDk2M2FjYjk2MzY3YzJhNTZkMWE2MSIsInN1YiI6IjYzMGYwMThjMDIzMWYyMDA3YWZkY2QxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0oM1ZjfqRX_WXszHApYYfutKJcgn5ebPsBui-vYP4LM")
-//            it.proceed(requestBuilder.build())
-//        }
-//    }
-
     @Singleton
     @Provides
-    fun provideOkHttpClient(
-        chuckerInterceptor: ChuckerInterceptor
-    ): OkHttpClient {
+    fun provideOkHttpClient(chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-//            .addInterceptor(authInterceptor)
             .addInterceptor(chuckerInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
@@ -69,5 +56,11 @@ object NetworkModule {
     @Provides
     fun provideGenreService(retrofit: Retrofit): GenreService {
         return retrofit.create(GenreService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMovieService(retrofit: Retrofit): MovieService {
+        return retrofit.create(MovieService::class.java)
     }
 }

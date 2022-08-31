@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_full.xml" value="0.136" />
         <entry key="app/src/main/res/drawable/bg_outline.xml" value="0.136" />
+        <entry key="app/src/main/res/drawable/ic_arrow.xml" value="0.136" />
         <entry key="app/src/main/res/font/font.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/font/open_sans_bold.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/font/open_sans_italic.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/font/open_sans_semibold.xml" value="0.2518518518518518" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23293172690763053" />
+        <entry key="app/src/main/res/layout/activity_movies_by_genre.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_item_genre.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/view_item_movie.xml" value="0.17682926829268292" />
       </map>
     </option>
   </component>

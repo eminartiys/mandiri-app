@@ -1,6 +1,7 @@
 package com.mandiri.application.data.model.response
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 /**
  * Created by Eminarti Sianturi on 31/08/22
@@ -15,21 +16,21 @@ data class Movie(
     @SerializedName("tagline")
     var tagline: String? = null,
     @SerializedName("original_title")
-    var original_title: String? = null,
+    var originalTitle: String? = null,
     @SerializedName("overview")
     var overview: String? = null,
     @SerializedName("release_date")
-    var release_date: String? = null,
+    var releaseDate: Date? = null,
     @SerializedName("status")
     var status: String? = null,
     @SerializedName("poster_path")
-    var poster_path: String? = null,
+    var posterPath: String? = null,
     @SerializedName("popularity")
     var popularity: String? = null,
     @SerializedName("vote_average")
-    var vote_average: String? = null,
+    var voteAverage: String? = null,
     @SerializedName("vote_count")
-    var vote_count: String? = null,
+    var voteCount: String? = null,
     @SerializedName("production_companies")
     var productionCompanies: List<ProductionCompany>? = null,
     @SerializedName("production_countries")

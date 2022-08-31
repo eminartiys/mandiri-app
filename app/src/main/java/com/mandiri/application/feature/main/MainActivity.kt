@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mandiri.application.base.wrapper.ViewResource
 import com.mandiri.application.data.model.response.Genre
 import com.mandiri.application.databinding.ActivityMainBinding
+import com.mandiri.application.feature.moviebygenre.MoviesByGenreActivity
 import com.mandiri.application.ui.adapter.GenreAdapter
 import com.mandiri.news.app.base.arch.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,6 +74,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
     private fun initList() {
         adapter = GenreAdapter {
+            MoviesByGenreActivity.startActivity(this, it.id.orEmpty(), it.name.orEmpty())
         }
         getViewBinding().uiViewGenreRecyclerview.apply {
             adapter = this@MainActivity.adapter

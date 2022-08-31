@@ -15,9 +15,13 @@
         android:theme="@style/Theme.MandiriApp"
         tools:targetApi="31">
         <activity
+            android:name=".feature.moviebygenre.MoviesByGenreActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MandiriApp.NoToolbar" />
+        <activity
             android:name=".feature.main.MainActivity"
-            android:theme="@style/Theme.MandiriApp.NoToolbar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.MandiriApp.NoToolbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
