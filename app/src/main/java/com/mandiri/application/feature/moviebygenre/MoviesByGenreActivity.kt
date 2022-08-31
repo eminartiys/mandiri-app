@@ -6,11 +6,13 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mandiri.application.base.wrapper.ViewResource
 import com.mandiri.application.data.model.response.Genre
 import com.mandiri.application.data.model.response.Movie
 import com.mandiri.application.databinding.ActivityMoviesByGenreBinding
 import com.mandiri.application.ui.adapter.MovieAdapter
+import com.mandiri.application.ui.viewhelper.LoadMoreOnScrollListener
 import com.mandiri.news.app.base.arch.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,21 +26,29 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
     private var genreId = ""
     private var genreName = ""
     private var currentPage = 1
+    private var isLoading = false
 
     @Inject
     lateinit var viewModel: MoviesByGenreViewModel
 
+    private val loadMoreScrollListener = object : LoadMoreOnScrollListener(PAGE_MULTIPLIER) {
+        override fun loadMore() {
+            if (!isLoading) {
+                getData()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getIntentData(intent.extras)
-        getViewBinding().uiViewGenreTitleTextview.text = genreName
         getData()
     }
 
     override fun configureView() {
-        initList()
-        setSupportActionBar(getViewBinding().toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        getIntentData(intent.extras)
+        setupToolbar()
+        setupRecyclerView()
+        setupSwipeRefresh()
     }
 
     override fun showLoading(isVisible: Boolean) {
@@ -58,26 +68,33 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
         viewModel.discoverMovieByResult.observe(this) {
             when (it) {
                 is ViewResource.Loading -> {
-                    showLoading(true)
-                    showContent(false)
-                    showError(false, null)
+                    if (currentPage == 1) {
+                        showLoading(true)
+                        showContent(false)
+                        showError(false, null)
+                    }
                 }
                 is ViewResource.Success -> {
-                    showLoading(false)
-                    showContent(true)
-                    showError(false, null)
+                    if (currentPage == 1) {
+                        showLoading(false)
+                        showContent(true)
+                        showError(false, null)
+                    }
                     setDataAdapter(it.data)
                 }
                 is ViewResource.Error -> {
-                    showLoading(false)
-                    showContent(false)
-                    showError(true, it.message)
+                    if (currentPage == 1) {
+                        showLoading(false)
+                        showContent(false)
+                        showError(true, it.message)
+                    }
                 }
             }
         }
     }
 
     private fun getData() {
+        isLoading = true
         viewModel.discoverMovieBy(genreId, currentPage)
     }
 
@@ -86,17 +103,41 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
         genreName = extras?.getString(EXTRAS_GENRE_NAME).orEmpty()
     }
 
-    private fun initList() {
+    private fun setupRecyclerView() {
         adapter = MovieAdapter {
         }
         getViewBinding().uiViewGenreRecyclerview.apply {
             adapter = this@MoviesByGenreActivity.adapter
-            layoutManager = LinearLayoutManager(this@MoviesByGenreActivity)
+            val mLayoutManager = LinearLayoutManager(this@MoviesByGenreActivity)
+            layoutManager = mLayoutManager
+            addOnScrollListener(loadMoreScrollListener)
+        }
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(getViewBinding().toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        getViewBinding().uiViewGenreTitleTextview.text = genreName
+    }
+
+    private fun setupSwipeRefresh() {
+        getViewBinding().uiViewSwipeRefreshContainer.setOnRefreshListener {
+            currentPage = 1
+            getData()
         }
     }
 
     private fun setDataAdapter(data: List<Movie>?) {
-        data?.let { adapter.setItems(it) }
+        data?.let {
+            if (currentPage == 1) {
+                adapter.setItems(it)
+            } else {
+                adapter.addItems(it)
+            }
+            getViewBinding().uiViewSwipeRefreshContainer.isRefreshing = false
+            isLoading = false
+            currentPage++
+        }
     }
 
     companion object {
