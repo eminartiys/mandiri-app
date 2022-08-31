@@ -12,4 +12,7 @@ interface BaseContract {
         fun showError(isErrorEnabled: Boolean, msg: String? = null)
     }
 
+    interface BaseRepository {
+        fun logResponse(msg: String?)
+    }
 }
