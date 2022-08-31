@@ -23,10 +23,12 @@ class GetGenresOfMovieUsecase @Inject constructor(
         return repository.getGenresOfMovie().map {
             when (it) {
                 is DataResource.Success -> {
-                    if (it.data.isNullOrEmpty()) {
+                    if (it.data == null) {
+                        ViewResource.Empty(listOf())
+                    } else if (it.data.genres.isNullOrEmpty()) {
                         ViewResource.Empty(listOf())
                     } else {
-                        ViewResource.Success(it.data)
+                        ViewResource.Success(it.data.genres!!)
                     }
                 }
                 is DataResource.Error -> {

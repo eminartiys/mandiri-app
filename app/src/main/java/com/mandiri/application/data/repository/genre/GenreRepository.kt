@@ -2,6 +2,7 @@ package com.mandiri.application.data.repository.genre
 
 import com.mandiri.application.base.arch.BaseRepositoryImpl
 import com.mandiri.application.data.model.response.Genre
+import com.mandiri.application.data.model.response.GenreListResponse
 import com.mandiri.news.app.base.arch.BaseContract
 import com.mandiri.news.app.base.model.DataResource
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +16,7 @@ class GenreRepositoryImpl @Inject constructor(
     private val remoteDataSource: GenreRemoteDataSource
 ) : BaseRepositoryImpl(), GenreRepository {
 
-    override suspend fun getGenresOfMovie(): Flow<DataResource<List<Genre>>> =
+    override suspend fun getGenresOfMovie(): Flow<DataResource<GenreListResponse>> =
         flow {
             emit(safeNetworkCall { remoteDataSource.getGenresOfMovie() })
         }
@@ -23,5 +24,5 @@ class GenreRepositoryImpl @Inject constructor(
 }
 
 interface GenreRepository : BaseContract.BaseRepository {
-    suspend fun getGenresOfMovie(): Flow<DataResource<List<Genre>>>
+    suspend fun getGenresOfMovie(): Flow<DataResource<GenreListResponse>>
 }

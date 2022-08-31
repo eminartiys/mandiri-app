@@ -14,7 +14,7 @@ import java.io.IOException
  */
 open class BaseRepositoryImpl : BaseContract.BaseRepository {
     override fun logResponse(msg: String?) {
-            Log.d(BaseRepositoryImpl::class.java.simpleName, msg.orEmpty())
+        Log.d(BaseRepositoryImpl::class.java.simpleName, msg.orEmpty())
     }
 
     suspend fun <T> safeNetworkCall(apiCall: suspend () -> T): DataResource<T> {

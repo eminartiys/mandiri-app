@@ -1,6 +1,7 @@
 package com.mandiri.application.data.repository.genre
 
 import com.mandiri.application.data.model.response.Genre
+import com.mandiri.application.data.model.response.GenreListResponse
 import com.mandiri.application.data.service.GenreService
 import javax.inject.Inject
 
@@ -10,9 +11,9 @@ import javax.inject.Inject
 
 class GenreRemoteDataSourceImpl
 @Inject constructor(private val service: GenreService) : GenreRemoteDataSource {
-    override suspend fun getGenresOfMovie(): List<Genre> = service.getGenresOfMovie()
+    override suspend fun getGenresOfMovie(): GenreListResponse = service.getGenresOfMovie()
 }
 
 interface GenreRemoteDataSource {
-    suspend fun getGenresOfMovie(): List<Genre>
+    suspend fun getGenresOfMovie(): GenreListResponse
 }

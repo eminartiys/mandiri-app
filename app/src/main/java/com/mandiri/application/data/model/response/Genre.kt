@@ -11,3 +11,8 @@ data class Genre(
     @SerializedName("name")
     var name: String? = null
 )
+
+data class GenreListResponse(
+    @SerializedName("genres")
+    var genres: List<Genre>? = null
+)

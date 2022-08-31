@@ -30,27 +30,25 @@ object NetworkModule {
         return ChuckerInterceptor.Builder(context).build()
     }
 
-    @Singleton
-    @Provides
-    fun provideAuthInterceptor(): Interceptor {
-        return Interceptor {
-            val requestBuilder = it.request().newBuilder()
-            requestBuilder.addHeader(
-                "Authorization",
-                "BEARER eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OTBjMDMzZGNhMDk2M2FjYjk2MzY3YzJhNTZkMWE2MSIsInN1YiI6IjYzMGYwMThjMDIzMWYyMDA3YWZkY2QxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0oM1ZjfqRX_WXszHApYYfutKJcgn5ebPsBui-vYP4LM"
-            )
-            it.proceed(requestBuilder.build())
-        }
-    }
+//    @Singleton
+//    @Provides
+//    fun provideAuthInterceptor(): Interceptor {
+//        return Interceptor {
+//            val requestBuilder = it.request().newBuilder()
+//            requestBuilder.addHeader(
+//                "Authorization",
+//                "BEARER eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0OTBjMDMzZGNhMDk2M2FjYjk2MzY3YzJhNTZkMWE2MSIsInN1YiI6IjYzMGYwMThjMDIzMWYyMDA3YWZkY2QxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0oM1ZjfqRX_WXszHApYYfutKJcgn5ebPsBui-vYP4LM")
+//            it.proceed(requestBuilder.build())
+//        }
+//    }
 
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        authInterceptor: Interceptor,
         chuckerInterceptor: ChuckerInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(authInterceptor)
+//            .addInterceptor(authInterceptor)
             .addInterceptor(chuckerInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)

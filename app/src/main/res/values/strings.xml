@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mandiri App</string>
+
+    <string name="genres_and_mood">Genres &amp; Mood</string>
+    <string name="genres_name">#%s</string>
+
 </resources>
