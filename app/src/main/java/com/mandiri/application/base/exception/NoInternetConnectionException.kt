@@ -5,4 +5,4 @@ import java.lang.Exception
 /**
  * Created by Eminarti Sianturi on 31/08/22
  */
-class NoInternetConnectionException: Exception()
+class NoInternetConnectionException(override val message: String? = null): Exception(message)

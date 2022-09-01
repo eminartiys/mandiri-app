@@ -22,7 +22,7 @@ open class BaseRepositoryImpl : BaseContract.BaseRepository {
             DataResource.Success(apiCall.invoke())
         } catch (throwable: Throwable) {
             when (throwable) {
-                is IOException -> DataResource.Error(NoInternetConnectionException())
+                is IOException -> DataResource.Error(NoInternetConnectionException("No Internet Connection"))
                 is HttpException -> {
                     when (val code = throwable.code()) {
                         in 300..308 -> {

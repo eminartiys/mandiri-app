@@ -262,6 +262,16 @@
             android:textSize="16sp"
             tools:text="Hi, something went wrong" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ui_view_retry_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_button"
+            android:padding="10dp"
+            android:text="@string/retry"
+            android:textColor="@color/white" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.Toolbar

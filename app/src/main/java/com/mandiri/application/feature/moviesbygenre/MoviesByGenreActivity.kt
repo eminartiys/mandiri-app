@@ -48,6 +48,10 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
         setupToolbar()
         setupRecyclerView()
         setupSwipeRefresh()
+        getViewBinding().uiViewRetryButton.setOnClickListener {
+            currentPage = 1
+            getData()
+        }
     }
 
     override fun showLoading(isVisible: Boolean) {
@@ -85,7 +89,7 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
                     if (currentPage == 1) {
                         showLoading(false)
                         showContent(false)
-                        showError(true, it.message)
+                        showError(true, it.exception?.message.orEmpty())
                     }
                 }
                 else -> {

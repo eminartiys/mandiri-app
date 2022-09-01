@@ -33,6 +33,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
 
     override fun configureView() {
         initList()
+        getViewBinding().uiViewRetryButton.setOnClickListener {
+            getData()
+        }
     }
 
     override fun showLoading(isVisible: Boolean) {
@@ -65,7 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(
                 is ViewResource.Error -> {
                     showLoading(false)
                     showContent(false)
-                    showError(true, it.message)
+                    showError(true, it.exception?.message.orEmpty())
                 }
             }
         }

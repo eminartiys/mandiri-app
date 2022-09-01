@@ -8,5 +8,6 @@
     <string name="reviews">Reviews</string>
     <string name="see_more_reviews">See more reviews…</string>
     <string name="reviews_for">Reviews for %s</string>
+    <string name="retry">Retry</string>
 
 </resources>

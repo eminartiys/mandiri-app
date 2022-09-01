@@ -69,7 +69,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
                 is ViewResource.Error -> {
                     showLoading(false)
                     showContent(false)
-                    showError(true, it.message)
+                    showError(true, it.exception?.message.orEmpty())
                 }
                 else -> {
                     // do nothing
@@ -154,6 +154,10 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
 
         getViewBinding().uiViewMovieReviewLabelSeemoreTextview.setOnClickListener {
             ReviewsByMovieActivity.startActivity(this, movieId, movieName.orEmpty())
+        }
+
+        getViewBinding().uiViewRetryButton.setOnClickListener {
+            getData()
         }
     }
 
