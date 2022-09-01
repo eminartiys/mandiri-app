@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23293172690763053" />
         <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_movies_by_genre.xml" value="0.21481481481481482" />
+        <entry key="app/src/main/res/layout/activity_trailer.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/view_item_genre.xml" value="0.375" />
         <entry key="app/src/main/res/layout/view_item_genre_background.xml" value="0.45" />
         <entry key="app/src/main/res/layout/view_item_movie.xml" value="0.17682926829268292" />

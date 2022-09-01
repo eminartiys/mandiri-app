@@ -5,20 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.mandiri.application.R
 import com.mandiri.application.base.wrapper.ViewResource
 import com.mandiri.application.data.model.response.Movie
 import com.mandiri.application.data.model.response.Review
+import com.mandiri.application.data.model.response.Video
 import com.mandiri.application.databinding.ActivityMovieDetailBinding
 import com.mandiri.application.di.NetworkModule
 import com.mandiri.application.feature.moviebygenre.MoviesByGenreActivity
-import com.mandiri.application.feature.moviebygenre.MoviesByGenreViewModel
-import com.mandiri.application.ui.adapter.GenreAdapter
+import com.mandiri.application.feature.trailer.TrailerActivity
 import com.mandiri.application.ui.adapter.GenreBgAdapter
 import com.mandiri.application.ui.adapter.ReviewAdapter
 import com.mandiri.news.app.base.arch.BaseActivity
@@ -35,6 +32,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
     private lateinit var genreAdapter: GenreBgAdapter
     private lateinit var reviewAdapter: ReviewAdapter
     private var movieId: String = ""
+    private var videoTrailer: Video? = null
 
     @Inject
     lateinit var viewModel: MovieDetailViewModel
@@ -48,6 +46,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
         getIntentData(intent.extras)
         setupToolbar()
         setupRecyclerView()
+        setOnClick()
     }
 
     override fun observeData() {
@@ -79,6 +78,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
             when (it) {
                 is ViewResource.Success -> {
                     getViewBinding().uiViewPlayButton.isEnabled = true
+                    videoTrailer = it.data
                 }
                 else -> {
                     getViewBinding().uiViewPlayButton.isEnabled = false
@@ -129,7 +129,8 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
         }
         getViewBinding().uiViewGenreRecyclerview.apply {
             adapter = this@MovieDetailActivity.genreAdapter
-            layoutManager = LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(this@MovieDetailActivity, LinearLayoutManager.HORIZONTAL, false)
         }
 
         reviewAdapter = ReviewAdapter {
@@ -138,6 +139,14 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
         getViewBinding().uiViewReviewRecyclerview.apply {
             adapter = this@MovieDetailActivity.reviewAdapter
             layoutManager = LinearLayoutManager(this@MovieDetailActivity)
+        }
+    }
+
+    private fun setOnClick() {
+        getViewBinding().uiViewPlayButton.setOnClickListener {
+            videoTrailer?.key?.let { videoHash ->
+                TrailerActivity.startActivity(this, videoHash)
+            }
         }
     }
 
@@ -178,8 +187,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
             if (it.size > 3) {
                 reviewAdapter.setItems(it.subList(0, 3))
                 getViewBinding().uiViewMovieReviewLabelSeemoreTextview.isVisible = true
-            }
-            else {
+            } else {
                 reviewAdapter.setItems(it)
                 getViewBinding().uiViewMovieReviewLabelSeemoreTextview.isVisible = false
             }
