@@ -15,6 +15,10 @@
         android:theme="@style/Theme.MandiriApp"
         tools:targetApi="31">
         <activity
+            android:name=".feature.review.ReviewDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MandiriApp.NoToolbar" />
+        <activity
             android:name=".feature.trailer.TrailerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"

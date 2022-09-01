@@ -10,6 +10,7 @@ import com.mandiri.application.R
 import com.mandiri.application.base.wrapper.ViewResource
 import com.mandiri.application.data.model.response.Review
 import com.mandiri.application.databinding.ActivityReviewsByMovieBinding
+import com.mandiri.application.feature.review.ReviewDetailActivity
 import com.mandiri.application.ui.adapter.ReviewAdapter
 import com.mandiri.application.ui.viewhelper.LoadMoreOnScrollListener
 import com.mandiri.news.app.base.arch.BaseActivity
@@ -107,6 +108,7 @@ class ReviewsByMovieActivity : BaseActivity<ActivityReviewsByMovieBinding>(
 
     private fun setupRecyclerView() {
         adapter = ReviewAdapter {
+            ReviewDetailActivity.startActivity(this, it.url.orEmpty())
         }
         getViewBinding().uiViewReviewRecyclerview.apply {
             adapter = this@ReviewsByMovieActivity.adapter
@@ -119,7 +121,8 @@ class ReviewsByMovieActivity : BaseActivity<ActivityReviewsByMovieBinding>(
     private fun setupToolbar() {
         setSupportActionBar(getViewBinding().toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        getViewBinding().uiViewReviewTitleTextview.text = resources.getString(R.string.reviews_for, movieName)
+        getViewBinding().uiViewReviewTitleTextview.text =
+            resources.getString(R.string.reviews_for, movieName)
     }
 
     private fun setupSwipeRefresh() {

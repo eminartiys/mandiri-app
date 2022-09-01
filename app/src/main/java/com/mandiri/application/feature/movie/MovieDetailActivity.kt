@@ -15,6 +15,7 @@ import com.mandiri.application.data.model.response.Video
 import com.mandiri.application.databinding.ActivityMovieDetailBinding
 import com.mandiri.application.di.NetworkModule
 import com.mandiri.application.feature.moviesbygenre.MoviesByGenreActivity
+import com.mandiri.application.feature.review.ReviewDetailActivity
 import com.mandiri.application.feature.reviewsbymovie.ReviewsByMovieActivity
 import com.mandiri.application.feature.trailer.TrailerActivity
 import com.mandiri.application.ui.adapter.GenreBgAdapter
@@ -136,7 +137,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
         }
 
         reviewAdapter = ReviewAdapter {
-
+            ReviewDetailActivity.startActivity(this, it.url.orEmpty())
         }
         getViewBinding().uiViewReviewRecyclerview.apply {
             adapter = this@MovieDetailActivity.reviewAdapter
