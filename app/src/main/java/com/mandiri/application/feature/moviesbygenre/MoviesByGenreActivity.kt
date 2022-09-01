@@ -1,4 +1,4 @@
-package com.mandiri.application.feature.moviebygenre
+package com.mandiri.application.feature.moviesbygenre
 
 import android.content.Context
 import android.content.Intent
@@ -6,9 +6,7 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mandiri.application.base.wrapper.ViewResource
-import com.mandiri.application.data.model.response.Genre
 import com.mandiri.application.data.model.response.Movie
 import com.mandiri.application.databinding.ActivityMoviesByGenreBinding
 import com.mandiri.application.feature.movie.MovieDetailActivity

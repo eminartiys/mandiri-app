@@ -1,4 +1,4 @@
-package com.mandiri.application.feature.moviebygenre
+package com.mandiri.application.feature.moviesbygenre
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

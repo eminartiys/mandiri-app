@@ -14,7 +14,8 @@ import com.mandiri.application.data.model.response.Review
 import com.mandiri.application.data.model.response.Video
 import com.mandiri.application.databinding.ActivityMovieDetailBinding
 import com.mandiri.application.di.NetworkModule
-import com.mandiri.application.feature.moviebygenre.MoviesByGenreActivity
+import com.mandiri.application.feature.moviesbygenre.MoviesByGenreActivity
+import com.mandiri.application.feature.reviewsbymovie.ReviewsByMovieActivity
 import com.mandiri.application.feature.trailer.TrailerActivity
 import com.mandiri.application.ui.adapter.GenreBgAdapter
 import com.mandiri.application.ui.adapter.ReviewAdapter
@@ -32,6 +33,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
     private lateinit var genreAdapter: GenreBgAdapter
     private lateinit var reviewAdapter: ReviewAdapter
     private var movieId: String = ""
+    private var movieName: String? = ""
     private var videoTrailer: Video? = null
 
     @Inject
@@ -134,7 +136,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
         }
 
         reviewAdapter = ReviewAdapter {
-//            MoviesByGenreActivity.startActivity(this, it.id.orEmpty(), it.name.orEmpty())
+
         }
         getViewBinding().uiViewReviewRecyclerview.apply {
             adapter = this@MovieDetailActivity.reviewAdapter
@@ -148,6 +150,10 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
                 TrailerActivity.startActivity(this, videoHash)
             }
         }
+
+        getViewBinding().uiViewMovieReviewLabelSeemoreTextview.setOnClickListener {
+            ReviewsByMovieActivity.startActivity(this, movieId, movieName.orEmpty())
+        }
     }
 
     private fun getData() {
@@ -158,6 +164,7 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
 
     private fun showData(movie: Movie?) {
         movie?.let {
+            movieName = it.title
             getViewBinding().apply {
                 uiViewMoviePosterImageview.load(NetworkModule.BASE_URL_PIC.plus(it.posterPath)) {
                     transformations(RoundedCornersTransformation(8f))

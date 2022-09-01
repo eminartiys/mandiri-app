@@ -4,29 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.moviesbygenre.MoviesByGenreActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        app:navigationIcon="@drawable/ic_back"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/ui_view_genre_title_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_bold"
-            android:textColor="@color/text_color_primary"
-            android:textSize="18sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            tools:text="Action"/>
-
-    </androidx.appcompat.widget.Toolbar>
+    tools:context=".feature.reviewsbymovie.ReviewsByMovieActivity">
 
     <ProgressBar
         android:id="@+id/ui_view_loading_progressbar"
@@ -69,6 +47,30 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ui_view_review_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans_bold"
+            android:maxLines="1"
+            android:textColor="@color/text_color_primary"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="Review for: Dragon Ball" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/ui_view_swipe_refresh_container"
         android:layout_width="match_parent"
@@ -79,13 +81,15 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ui_view_movie_recyclerview"
+            android:id="@+id/ui_view_review_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:paddingBottom="36dp"
-            tools:itemCount="5"
-            tools:listitem="@layout/view_item_movie" />
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            tools:listitem="@layout/view_item_review" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -18,7 +18,6 @@
             android:name=".feature.trailer.TrailerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
-            android:label="@string/title_activity_trailer"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.MandiriApp.Fullscreen" />
         <activity
@@ -26,7 +25,11 @@
             android:exported="false"
             android:theme="@style/Theme.MandiriApp.NoToolbar" />
         <activity
-            android:name=".feature.moviebygenre.MoviesByGenreActivity"
+            android:name=".feature.moviesbygenre.MoviesByGenreActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MandiriApp.NoToolbar" />
+        <activity
+            android:name=".feature.reviewsbymovie.ReviewsByMovieActivity"
             android:exported="false"
             android:theme="@style/Theme.MandiriApp.NoToolbar" />
         <activity
@@ -41,12 +44,12 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <queries>
         <intent>
             <action android:name="com.google.android.youtube.api.service.START" />
         </intent>
     </queries>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

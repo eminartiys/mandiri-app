@@ -7,8 +7,6 @@
     <string name="watch_trailer">Watch trailer</string>
     <string name="reviews">Reviews</string>
     <string name="see_more_reviews">See more reviews…</string>
-    <string name="title_activity_trailer">TrailerActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="reviews_for">Reviews for %s</string>
 
 </resources>

@@ -18,9 +18,11 @@
         <entry key="app/src/main/res/font/open_sans_bold.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/font/open_sans_italic.xml" value="0.2518518518518518" />
         <entry key="app/src/main/res/font/open_sans_semibold.xml" value="0.2518518518518518" />
+        <entry key="app/src/main/res/layout/activity_fullscreen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23293172690763053" />
         <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_movies_by_genre.xml" value="0.21481481481481482" />
+        <entry key="app/src/main/res/layout/activity_reviews_by_movie.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/activity_trailer.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/view_item_genre.xml" value="0.375" />
         <entry key="app/src/main/res/layout/view_item_genre_background.xml" value="0.45" />

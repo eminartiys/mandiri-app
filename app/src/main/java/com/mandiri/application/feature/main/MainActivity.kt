@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mandiri.application.base.wrapper.ViewResource
 import com.mandiri.application.data.model.response.Genre
 import com.mandiri.application.databinding.ActivityMainBinding
-import com.mandiri.application.feature.moviebygenre.MoviesByGenreActivity
+import com.mandiri.application.feature.moviesbygenre.MoviesByGenreActivity
 import com.mandiri.application.ui.adapter.GenreAdapter
 import com.mandiri.news.app.base.arch.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint

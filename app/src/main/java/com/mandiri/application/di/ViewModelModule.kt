@@ -3,7 +3,8 @@ package com.mandiri.application.di
 import com.mandiri.application.domain.*
 import com.mandiri.application.feature.main.MainViewModel
 import com.mandiri.application.feature.movie.MovieDetailViewModel
-import com.mandiri.application.feature.moviebygenre.MoviesByGenreViewModel
+import com.mandiri.application.feature.moviesbygenre.MoviesByGenreViewModel
+import com.mandiri.application.feature.reviewsbymovie.ReviewsByMovieViewModel
 import com.mandiri.news.app.base.arch.ViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -45,5 +46,13 @@ object ViewModelModule {
                 getMovieVideoUsecase
             )
         ).create(MovieDetailViewModel::class.java)
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideReviewsByMovieViewModel(getMovieReviewsUsecase: GetMovieReviewsUsecase): ReviewsByMovieViewModel {
+        return ViewModelFactory(ReviewsByMovieViewModel(getMovieReviewsUsecase)).create(
+            ReviewsByMovieViewModel::class.java
+        )
     }
 }
