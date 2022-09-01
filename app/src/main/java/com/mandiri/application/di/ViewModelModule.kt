@@ -1,8 +1,8 @@
 package com.mandiri.application.di
 
-import com.mandiri.application.domain.DiscoverMovieByUsecase
-import com.mandiri.application.domain.GetGenresOfMovieUsecase
+import com.mandiri.application.domain.*
 import com.mandiri.application.feature.main.MainViewModel
+import com.mandiri.application.feature.movie.MovieDetailViewModel
 import com.mandiri.application.feature.moviebygenre.MoviesByGenreViewModel
 import com.mandiri.news.app.base.arch.ViewModelFactory
 import dagger.Module
@@ -27,6 +27,23 @@ object ViewModelModule {
     @Provides
     @ActivityScoped
     fun provideMoviesByGenreViewModel(discoverMovieByUsecase: DiscoverMovieByUsecase): MoviesByGenreViewModel {
-        return ViewModelFactory(MoviesByGenreViewModel(discoverMovieByUsecase)).create(MoviesByGenreViewModel::class.java)
+        return ViewModelFactory(MoviesByGenreViewModel(discoverMovieByUsecase)).create(
+            MoviesByGenreViewModel::class.java
+        )
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideMovieDetailViewModel(
+        getDetailMovieUsecase: GetDetailMovieUsecase,
+        getMovieReviewsUsecase: GetMovieReviewsUsecase, getMovieVideoUsecase: GetMovieVideoUsecase
+    ): MovieDetailViewModel {
+        return ViewModelFactory(
+            MovieDetailViewModel(
+                getDetailMovieUsecase,
+                getMovieReviewsUsecase,
+                getMovieVideoUsecase
+            )
+        ).create(MovieDetailViewModel::class.java)
     }
 }

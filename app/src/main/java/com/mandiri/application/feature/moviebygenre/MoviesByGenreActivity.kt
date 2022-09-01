@@ -11,6 +11,7 @@ import com.mandiri.application.base.wrapper.ViewResource
 import com.mandiri.application.data.model.response.Genre
 import com.mandiri.application.data.model.response.Movie
 import com.mandiri.application.databinding.ActivityMoviesByGenreBinding
+import com.mandiri.application.feature.movie.MovieDetailActivity
 import com.mandiri.application.ui.adapter.MovieAdapter
 import com.mandiri.application.ui.viewhelper.LoadMoreOnScrollListener
 import com.mandiri.news.app.base.arch.BaseActivity
@@ -56,7 +57,7 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
     }
 
     override fun showContent(isVisible: Boolean) {
-        getViewBinding().uiViewGenreRecyclerview.isVisible = isVisible
+        getViewBinding().uiViewMovieRecyclerview.isVisible = isVisible
     }
 
     override fun showError(isErrorEnabled: Boolean, msg: String?) {
@@ -89,6 +90,9 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
                         showError(true, it.message)
                     }
                 }
+                else -> {
+                    // do nothing
+                }
             }
         }
     }
@@ -105,8 +109,9 @@ class MoviesByGenreActivity : BaseActivity<ActivityMoviesByGenreBinding>(
 
     private fun setupRecyclerView() {
         adapter = MovieAdapter {
+            MovieDetailActivity.startActivity(this, it.id.orEmpty())
         }
-        getViewBinding().uiViewGenreRecyclerview.apply {
+        getViewBinding().uiViewMovieRecyclerview.apply {
             adapter = this@MoviesByGenreActivity.adapter
             val mLayoutManager = LinearLayoutManager(this@MoviesByGenreActivity)
             layoutManager = mLayoutManager

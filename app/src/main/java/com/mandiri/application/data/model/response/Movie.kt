@@ -25,12 +25,14 @@ data class Movie(
     var status: String? = null,
     @SerializedName("poster_path")
     var posterPath: String? = null,
+    @SerializedName("backdrop_path")
+    var backdropPath: String? = null,
     @SerializedName("popularity")
-    var popularity: String? = null,
+    var popularity: Double? = null,
     @SerializedName("vote_average")
-    var voteAverage: String? = null,
+    var voteAverage: Double? = null,
     @SerializedName("vote_count")
-    var voteCount: String? = null,
+    var voteCount: Int? = null,
     @SerializedName("production_companies")
     var productionCompanies: List<ProductionCompany>? = null,
     @SerializedName("production_countries")

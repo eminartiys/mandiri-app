@@ -10,11 +10,11 @@
     android:paddingBottom="8dp">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ui_view_movie_poster_imagevuew"
+        android:id="@+id/ui_view_movie_poster_imageview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_full"
+        android:background="@drawable/bg_blue_grey_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="W, 1:1.4"
         app:layout_constraintLeft_toLeftOf="parent"

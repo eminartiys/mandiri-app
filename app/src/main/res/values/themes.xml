@@ -55,4 +55,5 @@
     <style name="Theme.MandiriNews.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MandiriNews.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

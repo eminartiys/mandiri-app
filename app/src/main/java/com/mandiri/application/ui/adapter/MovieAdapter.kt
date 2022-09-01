@@ -56,7 +56,7 @@ class MovieAdapter(private val itemClick: (Movie) -> Unit) :
         fun bindView(item: Movie) {
             with(item) {
                 itemView.setOnClickListener { itemClick(this) }
-                binding.uiViewMoviePosterImagevuew.load(NetworkModule.BASE_URL_PIC.plus(posterPath)) {
+                binding.uiViewMoviePosterImageview.load(NetworkModule.BASE_URL_PIC.plus(posterPath)) {
                     transformations(RoundedCornersTransformation(8f))
                 }
                 binding.uiViewMovieNameTextview.text = title

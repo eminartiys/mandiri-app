@@ -322,10 +322,10 @@
     <!-- White -->
 
     <!--Region Theme-->
-    <color name="primary_color">@color/light_blue_200</color>
-    <color name="primary_variant_color">@color/blue_A200</color>
-    <color name="secondary_color">@color/grey_900</color>
-    <color name="secondary_variant_color">@color/black</color>
+    <color name="primary_color">@color/grey_900</color>
+    <color name="primary_variant_color">@color/black</color>
+    <color name="secondary_color">@color/light_blue_200</color>
+    <color name="secondary_variant_color">@color/blue_A200</color>
 
     <color name="background_color">@color/white</color>
     <color name="surface_color">@color/white</color>

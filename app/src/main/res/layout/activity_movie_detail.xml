@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.movie.MovieDetailActivity">
+
+    <ProgressBar
+        android:id="@+id/ui_view_loading_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ui_view_movie_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp"
+            android:clipToPadding="false"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ui_view_play_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_button"
+                android:drawableEnd="@drawable/ic_play"
+                android:enabled="false"
+                android:padding="10dp"
+                android:text="@string/watch_trailer"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_genre_recyclerview" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ui_view_movie_poster_imageview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_blue_grey_100"
+                app:layout_constraintDimensionRatio="1:1.4"
+                app:layout_constraintLeft_toRightOf="@id/left_guideline"
+                app:layout_constraintRight_toLeftOf="@id/right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/top_guideline" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ui_view_movie_name_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textColor="@color/text_color_primary"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_movie_poster_imageview"
+                tools:text="Dragon Ball Super: Super Hero" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ui_view_movie_tagline_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/text_color_primary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_movie_name_textview"
+                tools:text="#A super awakening and calamity is born." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ui_view_movie_overview_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/open_sans"
+                android:lineSpacingMultiplier="1.1"
+                android:textColor="@color/text_color_primary"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_play_button"
+                tools:text="The Red Ribbon Army, an evil organization that was once destroyed by Goku in the past, has been reformed by a group of people who have created new and mightier Androids, Gamma 1 and Gamma 2, and seek vengeance against Goku and his family." />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ui_view_movie_review_label_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textColor="@color/text_color_primary"
+                android:textSize="14sp"
+                android:text="@string/reviews"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_movie_overview_textview" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ui_view_movie_review_label_seemore_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/open_sans_italic"
+                android:padding="8dp"
+                android:textColor="@color/blue_A400"
+                android:textSize="12sp"
+                android:text="@string/see_more_reviews"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_review_recyclerview" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ui_view_movie_detail_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_movie_tagline_textview">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ui_view_movie_star_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:drawableStart="@drawable/ic_star"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="12sp"
+                    tools:text="7.7 " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ui_view_movie_status_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="12sp"
+                    tools:text=" • Released" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ui_view_movie_release_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="2dp"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="12sp"
+                    tools:text=" • 2022" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/right_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.65" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/left_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ui_view_genre_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:clipToPadding="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_movie_detail_container"
+                tools:itemCount="1"
+                tools:listitem="@layout/view_item_genre_background" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ui_view_review_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ui_view_movie_review_label_textview"
+                tools:itemCount="2"
+                tools:listitem="@layout/view_item_review" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ui_view_error_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_error" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ui_view_error_msg_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textAlignment="center"
+            android:textColor="@color/blue_A400"
+            android:textSize="16sp"
+            tools:text="Hi, something went wrong" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

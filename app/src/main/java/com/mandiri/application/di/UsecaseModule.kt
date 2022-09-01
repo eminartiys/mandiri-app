@@ -2,8 +2,7 @@ package com.mandiri.application.di
 
 import com.mandiri.application.data.repository.genre.GenreRepository
 import com.mandiri.application.data.repository.movie.MovieRepository
-import com.mandiri.application.domain.DiscoverMovieByUsecase
-import com.mandiri.application.domain.GetGenresOfMovieUsecase
+import com.mandiri.application.domain.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,5 +27,23 @@ object UsecaseModule {
     @Provides
     fun provideDiscoverMovieByUsecase(repository: MovieRepository): DiscoverMovieByUsecase {
         return DiscoverMovieByUsecase(repository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetDetailMovieUsecase(repository: MovieRepository): GetDetailMovieUsecase {
+        return GetDetailMovieUsecase(repository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetMovieReviewsUsecase(repository: MovieRepository): GetMovieReviewsUsecase {
+        return GetMovieReviewsUsecase(repository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetMovieVideoUsecase(repository: MovieRepository): GetMovieVideoUsecase {
+        return GetMovieVideoUsecase(repository, Dispatchers.IO)
     }
 }

@@ -4,4 +4,8 @@
     <string name="genres_and_mood">Genres &amp; Mood</string>
     <string name="genres_name">#%s</string>
 
+    <string name="watch_trailer">Watch trailer</string>
+    <string name="reviews">Reviews</string>
+    <string name="see_more_reviews">See more reviews…</string>
+
 </resources>
