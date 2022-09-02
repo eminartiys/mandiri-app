@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.mandiri.application.base.wrapper.ViewResource
+import com.mandiri.application.Keys
 import com.mandiri.application.data.model.response.Movie
 import com.mandiri.application.data.model.response.Review
 import com.mandiri.application.data.model.response.Video
@@ -40,8 +41,11 @@ class MovieDetailActivity : BaseActivity<ActivityMovieDetailBinding>(
     @Inject
     lateinit var viewModel: MovieDetailViewModel
 
+    lateinit var apiKeys: Keys
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        apiKeys = Keys()
         getData()
     }
 

@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
+import com.mandiri.application.Keys
 import com.mandiri.application.databinding.ActivityTrailerBinding
 
 
@@ -19,8 +20,6 @@ class TrailerActivity : YouTubeBaseActivity() {
 
     private lateinit var binding: ActivityTrailerBinding
     private var movieHash = ""
-
-    val apiKey = "AIzaSyBv7cTjGSY4xmN2tYnMScppwcQK3-ZQIZk"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +35,7 @@ class TrailerActivity : YouTubeBaseActivity() {
 
     private fun configurePlayer() {
         binding.uiViewYoutubePlayer.initialize(
-            apiKey,
+            Keys.getYoutubeApiKey(),
             object : YouTubePlayer.OnInitializedListener {
                 override fun onInitializationSuccess(
                     provider: YouTubePlayer.Provider?,
